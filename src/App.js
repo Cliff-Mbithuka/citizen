@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -10,7 +11,12 @@ import Profile from "./pages/Profile";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
-  const userRole = localStorage.getItem("userRole");
+  const [userRole, setUserRole] = useState(localStorage.getItem("userRole"));
+
+  useEffect(() => {
+    setUserRole(localStorage.getItem("userRole"));
+  }, []); 
+  
 
   return (
     <Routes>
@@ -18,34 +24,47 @@ function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
 
-      {/* Protect Admin and User Dashboards */}
+      {/* Ensure proper redirection after login */}
       <Route
         path="/dashboard/admin"
         element={
-          <ProtectedRoute>
-            <AdminDashboard />
-          </ProtectedRoute>
+          userRole === "admin" ? (
+            <ProtectedRoute>
+              <AdminDashboard />
+            </ProtectedRoute>
+          ) : (
+            <Navigate to="/dashboard/user" />
+          )
         }
       />
       <Route
         path="/dashboard/user"
         element={
-          <ProtectedRoute>
-            <UserDashboard />
-          </ProtectedRoute>
+          userRole === "user" ? (
+            <ProtectedRoute>
+              <UserDashboard />
+            </ProtectedRoute>
+          ) : (
+            <Navigate to="/dashboard/admin" />
+          )
         }
       />
 
       {/* Admin-Only Route */}
       {userRole === "admin" && (
         <Route
-          path="/dashboard/manage-users"
-          element={
+        path="/dashboard/manage-users"
+        element={
+          userRole === "admin" ? (
             <ProtectedRoute>
               <ManageUsers />
             </ProtectedRoute>
-          }
-        />
+          ) : (
+            <Navigate to="/dashboard/user" />
+          )
+        }
+      />
+      
       )}
       <Route
         path="/dashboard/incidents"

@@ -16,8 +16,9 @@ export const login = async (credentials) => {
   try {
     console.log("Sending Login Data:", credentials); // Debugging
     const response = await api.post("/auth/login", credentials);
-    localStorage.setItem("userToken", response.data.token);
+    localStorage.setItem("token", response.data.token);
     localStorage.setItem("userRole", response.data.role); // Store token
+    localStorage.setItem("userId", response.data.userId);
     return response.data;
   } catch (error) {
     console.error("Login failed:", error);
@@ -27,7 +28,7 @@ export const login = async (credentials) => {
 
 // Logout User
 export const logout = () => {
-  localStorage.removeItem("userToken");
+  localStorage.removeItem("token");
   localStorage.removeItem("userRole");
 };
 

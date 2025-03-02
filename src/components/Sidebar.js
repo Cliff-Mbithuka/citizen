@@ -1,8 +1,10 @@
 import { Link, useNavigate } from "react-router-dom";
-import "./styles/sidebar.css"; // ✅ Sidebar Styles
+import "./styles/sidebar.css";
 
-const Sidebar = ({ isAdmin }) => {
+const Sidebar = () => {
   const navigate = useNavigate();
+  const userRole = localStorage.getItem("userRole"); // Get the role from localStorage
+  const isAdmin = userRole === "admin";
 
   const handleLogout = () => {
     localStorage.removeItem("userToken");

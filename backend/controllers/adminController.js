@@ -1,18 +1,21 @@
-const User = require('../models/user');
+const { User } = require("../models"); // ✅ Correct import // ✅ Ensure correct model file
 const Incident = require('../models/incident');
 const Poll = require('../models/pollModel');
-const PollOption = require('../models/pollOptionModel');
-const PollVote = require('../models/pollVoteModel');
+
 
 // Example admin action: Get all users
 exports.getAllUsers = async (req, res) => {
   try {
-    const users = await User.findAll();
+    const users = await User.findAll({
+      attributes: ["id", "name", "email", "role"], // ✅ Select necessary fields
+    });
     res.json(users);
   } catch (err) {
+    console.error("Error fetching users:", err); // ✅ Debugging log
     res.status(500).json({ error: err.message });
   }
 };
+
 
 // Example admin action: Delete a user by ID
 exports.deleteUser = async (req, res) => {
@@ -20,14 +23,16 @@ exports.deleteUser = async (req, res) => {
   try {
     const user = await User.findByPk(id);
     if (!user) {
-      return res.status(404).json({ message: 'User not found' });
+      return res.status(404).json({ message: "User not found" });
     }
     await user.destroy();
-    res.json({ message: 'User deleted successfully' });
+    res.json({ message: "User deleted successfully" }); // ✅ Return response
   } catch (err) {
+    console.error("Delete error:", err);
     res.status(500).json({ error: err.message });
   }
 };
+
 
 // Example admin action: Get all incidents
 exports.getAllIncidents = async (req, res) => {
