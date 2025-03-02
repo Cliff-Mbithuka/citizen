@@ -1,5 +1,6 @@
-const Incident = require('../models/incidentModel');
-const User = require('../models/User'); // Assuming you have a User model
+const { Incident, User } = require("../models"); // ✅ Import directly from the models index
+console.log("Incident model:", Incident);
+console.log("User model:", User);
 
 exports.createIncident = async (req, res) => {
   const { title, description, location } = req.body;
@@ -21,7 +22,7 @@ exports.createIncident = async (req, res) => {
 
 exports.getIncidents = async (req, res) => {
   try {
-    const incidents = await Incident.findAll({ include: { model: User, as: 'incidentUser' } });
+    const incidents = await Incident.findAll({ include: { model: User, as: 'reportingUser' } });
     res.json(incidents);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -31,7 +32,7 @@ exports.getIncidents = async (req, res) => {
 exports.getIncidentById = async (req, res) => {
   const { id } = req.params;
   try {
-    const incident = await Incident.findByPk(id, { include: { model: User, as: 'incidentUser' } });
+    const incident = await Incident.findByPk(id, { include: { model: User, as: 'reportingUser' } });
     if (!incident) {
       return res.status(404).json({ message: 'Incident not found' });
     }

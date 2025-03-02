@@ -1,5 +1,5 @@
-const User = require('../models/User');
-const Incident = require('../models/incidentModel');
+const User = require('../models/user');
+const Incident = require('../models/incident');
 const Poll = require('../models/pollModel');
 const PollOption = require('../models/pollOptionModel');
 const PollVote = require('../models/pollVoteModel');

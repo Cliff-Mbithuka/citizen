@@ -1,7 +1,7 @@
 const Poll = require('../models/pollModel');
 const PollOption = require('../models/pollOptionModel');
 const PollVote = require('../models/pollVoteModel');
-const User = require('../models/User'); // Assuming you have a User model
+const User = require('../models/user'); // Assuming you have a User model
 
 exports.createPoll = async (req, res) => {
   const { title, description, question, options } = req.body;
