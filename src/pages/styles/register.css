@@ -1,0 +1,76 @@
+/* Centered Register Box */
+.register-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #f4f4f4;
+  }
+  
+  .register-box {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 350px;
+  }
+  
+  /* Form Styling */
+  .register-box h2 {
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .register-box form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  input, .styled-select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 16px;
+  }
+  
+  /* Role Dropdown Styling */
+  .role-select {
+    text-align: left;
+  }
+  
+  .styled-select {
+    appearance: none;
+    background: #fff;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+  }
+  
+  .styled-select:hover, .styled-select:focus {
+    border-color: #007bff;
+  }
+  
+  /* Register Button */
+  .register-btn {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .register-btn:hover {
+    background: #218838;
+  }
+  
+  /* Responsive */
+  @media (max-width: 400px) {
+    .register-box {
+      width: 90%;
+    }
+  }
+  

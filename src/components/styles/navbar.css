@@ -1,0 +1,30 @@
+.navbar {
+    height: 60px;
+    background: #1F2D3D;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    /* margin-left: 40px; */
+  }
+  
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .navbar button {
+    background: red;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .navbar button:hover {
+    background: darkred;
+  }
+  

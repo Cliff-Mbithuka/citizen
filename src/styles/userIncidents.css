@@ -1,0 +1,17 @@
+.incident-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .incidents-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .incidents-table th, .incidents-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+  }
+  
